@@ -1,9 +1,9 @@
 import time
 
-def power(x, y, n):
+def calculate_power(x, y, n):
     if y == 0:
         return 1
-    z = power(x % n, y // 2, n) % n
+    z = calculate_power(x % n, y // 2, n) % n
     if y % 2 == 0:
         return (z * z) % n
     else:
@@ -19,8 +19,8 @@ def generate_points(n):
     base_x, base_y, modulo = 196, 123, 31
     points = []
     for i in range(2 * n):
-        x = power(base_x * i, modulo, 20 * n)
-        y = power(base_y * i, modulo, 20 * n)
+        x = calculate_power(base_x * i, modulo, 20 * n)
+        y = calculate_power(base_y * i, modulo, 20 * n)
         points.append([x, y])
     return points
 
@@ -79,3 +79,4 @@ for _ in range(1, 11):
         x, y = binary_search(coordsX, point[0]), binary_search(coordsY, point[1])
     end_time =  time.perf_counter()
     print(N, (end_time - start_time) * 1000)
+
